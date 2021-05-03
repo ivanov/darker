@@ -18,9 +18,12 @@ from darker.utils import TextDocument
 from darker.verification import NotEquivalentError
 
 
-def test_isort_option_without_isort(tmpdir, without_isort, caplog):
+def test_isort_option_without_isort(tmpdir, isort_present, caplog):
+    """``darker --isort`` guides to install ``isort`` if it's missing"""
     check_call(["git", "init"], cwd=tmpdir)
-    with patch.object(darker.__main__, "isort", None), pytest.raises(SystemExit):
+    with isort_present(False), patch.object(
+        darker.__main__, "isort", None
+    ), pytest.raises(SystemExit):
 
         darker.__main__.main(["--isort", str(tmpdir)])
 

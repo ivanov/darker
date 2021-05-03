@@ -8,6 +8,7 @@ Added
 
 Fixed
 -----
+- Now works again even if ``isort`` isn't installed
 
 
 1.2.3_ - 2021-05-02
